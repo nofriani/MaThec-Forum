@@ -1,0 +1,62 @@
+PTUNJUK PENGISIAN(bold)
+1. Isilah setiap pertanyaan yang diminta dengan cara  memilih salah satu jawaban. dengan memberi tanda check (.) pada
+pilihan jawaban yang tersedia berdasarkan pendapat anda sendiri.
+2. Bacalah kembali setiap pertanyaan untuk memastikan tidak ada pertanyaan yang tidak
+terjawab.
+Keterangan :
+1 = Sangat Setuju 
+2 = Setuju 
+3 = Ragu-ragu
+4 = Tidak Setuju
+5 = Sangat Tidak Setuju
+
+terdapat 2 button Tidak Bersedia dan Bersedia
+
+
+Usefulness(bold)
+
+1.Sejauh mana penggunaan forum diskusi membantu Anda menjadi lebih efektif dalam kegiatan sehari-hari?
+2.Bagaimana forum diskusi membantu Anda meningkatkan produktivitas Anda?
+3.Menurut Anda, sejauh mana kehadiran forum diskusi bermanfaat bagi Anda?
+4.Bagaimana forum diskusi membantu Anda mengontrol aktivitas dalam hidup sehari-hari Anda?
+5.Apakah forum diskusi mempermudah pencapaian tujuan Anda?
+6.Sejauh mana penggunaan forum diskusi menghemat waktu Anda?
+7.Apakah forum diskusi memenuhi kebutuhan Anda?
+8.Sejauh mana forum diskusi mampu melakukan semua yang Anda harapkan?
+
+
+Ease of Use (bold)
+
+
+
+1.Bagaimana tingkat kesulitan penggunaan forum diskusi menurut Anda?
+2.Apakah forum diskusi mudah digunakan menurut pengalaman Anda?
+3.Sejauh mana kemudahan penggunaan forum diskusi memengaruhi kepuasan Anda?
+4.Seberapa mudah Anda menemukan forum diskusi ini dan mulai berpartisipasi?
+5.Menurut Anda, bagaimana tingkat kesulitan penggunaan forum diskusi ?
+6.Sejauh mana Anda merasa nyaman dan mudah menggunakan forum diskusi?
+7.Sejauh mana kemudahan penggunaan forum diskusi memengaruhi kepuasan Anda?
+8.Apakah Anda melihat adanya ketidakkonsistenan saat menggunakan forum diskusi?
+9.Bagaimana pendapat Anda mengenai kemudahan penggunaan forum diskusi ?
+10.Sejauh mana Anda dapat memulihkan kesalahan dengan cepat dan mudah saat menggunakan forum diskusi?
+11.Sejauh mana Anda dapat menggunakan forum diskusi dengan sukses setiap saat?
+
+Ease of Learning (bold)
+1.Bagaimana pengalaman Anda dalam belajar menggunakan forum diskusi? Apakah Anda merasa cepat memahaminya?
+2.Sejauh mana Anda mudah mengingat cara menggunakan forum diskusi setelah belajar?
+3.Apa yang membuat forum diskusi mudah untuk dipelajari menurut Anda?
+4.Sejauh mana Anda merasa menjadi terampil dalam menggunakan forum diskusi setelah belajar?
+
+Satisfaction(bold)
+1.Sejauh mana Anda merasa puas dengan penggunaan forum diskusi?
+2.Apakah Anda akan merekomendasikan penggunaan forum diskusi kepada teman atau kolega Anda?
+3.Bagaimana tingkat kepuasan Anda terhadap penggunaan forum diskusi? 
+4.Apakah forum diskusi bekerja sesuai dengan harapan Anda?
+5.Bagaimana tingkat kehebatan forum diskusi menurut Anda?
+6.Sejauh mana Anda merasa perlu memiliki forum diskusi?
+7.Menurut Anda, sejauh mana forum diskusi nyaman untuk digunakan?
+8. Apakah Anda merasa sangat menyenangkan untuk digunakan?
+
+
+query untuk menampilkan data nama user, questioner, dan score
+select u.name, q.questioner, ls.score from "Users" u join "LinkertScores" ls on ls.id_user = u.id join "Questioners" q on q.id = ls.id_questioner where u.id = 3

@@ -1,0 +1,144 @@
+<%- include('./partials/header.ejs') %>
+  <!-- Sidenav -->
+  <%- include('./partials/sidenav.ejs') %>
+    <!-- Main content -->
+    <div class="main-content" id="panel">
+      <!-- Topnav -->
+      <%- include('./partials/navbar.ejs') %>
+        <!-- Header -->
+        <div class="header bg-success pb-6">
+          <div class="container-fluid">
+            <div class="header-body">
+              <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                  <h6 class="h2 text-white d-inline-block mb-0">MaThec</h6>
+                  <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                      <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
+                      <li class="breadcrumb-item"><a href="/questions">Questions</a></li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Header -->
+
+        <!-- Page content -->
+        <div class="container-fluid mt--6">
+          <div class="row">
+            <div class="col">
+              <div class="card">
+                <!-- Card header -->
+                <div class="card-header">
+                  <h3 class="mb-0">Report Data Question</h3>
+                  <p class="text-sm mb-0">
+                    Table to see question data reported by users on the MaThec
+                  </p>
+                </div>
+                <div class="table-responsive py-4">
+                  <table class="table table-flush" id="datatable-basic">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>Question</th>
+                        <th>Report Type</th>
+                        <th>Description</th>
+                        <th>Reporter</th>
+                        <th>Proof</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% if (reports.length> 0) { %>
+                        <% reports.forEach(function(report) { %>
+                          <% if(report.read){ %>
+                            <tr>
+                              <% }else{ %>
+                            <tr class="bg-primary text-white">
+                              <% } %>
+                                <td>
+                                  <%= report.question.title %>
+                                </td>
+                                <td>
+                                  <%= report.jenis_laporan %>
+                                </td>
+                                <td>
+                                  <%= report.deskripsi.substring(0, 20) + '...' %>
+                                </td>
+                                <td>
+                                  <%= report.pelapor.name %>
+                                </td>
+                                <td>
+                                  <% if(report.bukti_laporan) {%>
+                                    <a href="<%= report.bukti_laporan %>" target="_blank">
+                                      <img src="<%= report.bukti_laporan %>" alt="" width="50px">
+                                    </a>
+                                    <% }%>
+                                </td>
+
+                                <td>
+                                  <% if(report.question.deleted_at==null) { %>
+                                    <span class="badge badge-danger">
+                                      No blocked
+                                    </span>
+                                    <% } else { %>
+                                      <span class="badge badge-success">
+                                        Been bloked
+                                      </span>
+                                      <% } %>
+                                </td>
+
+                                <td>
+                                  <button <%=report.question.deleted_at !==null ? 'disabled' : '' %> class="btn btn-icon
+                                    btn-danger btn-sm" type="button" data-toggle="modal"
+                                    data-target="#question-report-<%= report.id %>">
+                                      <span class="btn-inner--text"><i class="fa fa-trash fa-1x m-0"></i>
+                                        Suspend</span>
+                                  </button>
+                                  <div class="modal fade" id="question-report-<%= report.id %>" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <p style="text-wrap: wrap; width: 100%; color: black;">
+                                            If you want to continue press "agree"!
+                                          </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                          <a href="/questions/delete/<%= report.question.id %>"
+                                            class="btn btn-danger">I Agree</a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                            </tr>
+                            <% }) %>
+                              <% } else { %>
+                                <tr>
+                                  <td class="text-center" colspan="6">Not yet report question</td>
+                                </tr>
+                                <% } %>
+
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Page Content -->
+
+    </div>
+    <%- include('./partials/footer.ejs') %>

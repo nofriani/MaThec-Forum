@@ -1,0 +1,60 @@
+<%- include('./partials/header.ejs') %>
+  <!-- Sidenav -->
+  <%- include('./partials/sidenav.ejs') %>
+    <!-- Main content -->
+    <div class="main-content" id="panel">
+      <!-- Topnav -->
+      <%- include('./partials/navbar.ejs') %>
+      <div style="margin-top: 2rem;"></div>
+      <div class="col col-lg-6 m-auto col-sm-12 p-0" style="border-radius: .4375rem;box-shadow: 0 50px 100px rgba(50, 50, 93, .1), 0 15px 35px rgba(50, 50, 93, .15), 0 5px 15px rgba(0, 0, 0, .1);">
+        <div class="px-3 py-3">
+          <h6 class="text-sm text-muted m-0">You have <strong class="text-primary"><%= notifications.length %></strong> notifications.</h6>
+        </div>
+        <!-- List group -->
+        <div class="list-group list-group-flush ">
+          <% notifications.forEach(notification => { %>
+          <% if(notification.answer_id != null) {%> 
+            <a href="/answers" class="list-group-item list-group-item-action">
+          <% }else if(notification.question_id != null) {%>
+            <a href="/questions" class="list-group-item list-group-item-action">
+          <% } else if(notification.terlapor_id != null) { %>
+            <a href="/users" class="list-group-item list-group-item-action">
+          <% } else { %>
+            <a href="/users" class="list-group-item list-group-item-action">
+          <% } %>
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <!-- Avatar -->
+                <img alt="Image placeholder" 
+                  src="<%= notification.pelapor && notification.pelapor.Profile.profile_picture %>"
+                  class="avatar rounded-circle" style="object-fit: cover;">
+              </div>
+              <div class="col ml--2">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <h4 class="mb-0 text-sm"><%= notification.pelapor ? notification.pelapor.name : "" %></h>
+                  </div>
+                  <div class="text-right text-muted">
+                    <small><%= new Date(notification.createdAt).toLocaleDateString("id-ID", {
+                      year: "numeric",
+                      month: "short",
+  
+                      day: "numeric",
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: false,
+                    }) %></small>
+                  </div>
+                </div>
+                <p class="text-sm mb-0"><%= notification.deskripsi &&  notification.deskripsi %> </p>
+              </div>
+            </div>
+          </a>
+          <% }) %>
+        </div>
+      </div>
+
+
+
+    </div>
+<%- include('./partials/footer.ejs') %>

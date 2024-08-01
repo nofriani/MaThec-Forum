@@ -1,0 +1,114 @@
+<%- include('./partials/header.ejs') %>
+  <!-- Sidenav -->
+  <%- include('./partials/sidenav.ejs') %>
+    <!-- Main content -->
+    <div class="main-content" id="panel">
+      <!-- Topnav -->
+      <%- include('./partials/navbar.ejs') %>
+        <!-- Header -->
+        <!-- Header -->
+        <div class="header bg-success pb-6">
+          <div class="container-fluid">
+            <div class="header-body">
+              <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                  <h6 class="h2 text-white d-inline-block mb-0">MaThec</h6>
+                  <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                      <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
+                      <li class="breadcrumb-item"><a href="/kuisioner">Questionnaire</a></li>
+                      <li class="breadcrumb-item active"><a href="#">Detail</a></li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+              <!-- Card stats -->
+              <div class="row">
+                <div class="col">
+                  <div class="card">
+                    <!-- Card header -->
+                    <div class="card-header">
+                      <div class="row">
+                        <div class="col-md-2">
+                          <img src="https://api.mathec.site/<%= user.Profile.profile_picture%>"
+                            class="rounded img-responsive" alt="profile" width="200px" />
+                        </div>
+                        <div class="col-md-4">
+                          <h3 class="mb-2">
+                            <%= user.name %>
+                          </h3>
+                          <% if(user.questioner.length> 0) { %>
+                            <p class="text-muted mb-0" style="font-size: 12px;">Fiil i the questionnaire data on the date <%=
+                                user.questioner[0].createdAt %>
+                            </p>
+                            <% } else { %>
+                              <p>Never filled out a questionnaire</p>
+                              <%}%>
+                                <p class="text-black">
+                                  <% if(!user.deskripsi) {%>
+                                    Not yet description!
+                                    <% } else { %>
+                                      <%= user.deskripsi %>
+                                        <% } %>
+                                </p>
+                        </div>
+                        <div class="col-md-3">
+                          <a href="/kuisioner/<%= user.id %>/print" class="btn btn-success btn-sm">
+                            Download PDF
+                          </a>
+                        </div>
+                      </div>
+
+                      <div class="row table-responsive py-3">
+                        <table class="table table-flush" id="datatable-basics">
+                          <thead class="thead-light">
+                            <tr>
+                              <td>No.</td>
+                              <td>Questioner</td>
+                              <td>Category</td>
+                              <td>Score</td>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% let no=1; %>
+                              <% let total=0; %>
+                                <% user.questioner.forEach((questioner)=> { %>
+                                  <tr>
+                                    <td>
+                                      <%= no++; %>
+                                    </td>
+                                    <td>
+                                      <%= questioner.questioner %>
+                                    </td>
+                                    <td>
+                                      <%= questioner.category.name %>
+                                    </td>
+                                    <td>
+                                      <%= questioner.LinkertScore.score %>
+                                    </td>
+                                  </tr>
+                                  <% total +=questioner.LinkertScore.score %>
+                                    <%})%>
+                          </tbody>
+                          <tfood>
+                            <tr>
+                              <td colspan="3">Total</td>
+                              <td>
+                                <%= total %>
+                              </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Page content -->
+    </div>
+    <%- include('./partials/footer.ejs') %>

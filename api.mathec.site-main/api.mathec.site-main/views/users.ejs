@@ -1,0 +1,157 @@
+<%- include('./partials/header.ejs') %>
+  <!-- Sidenav -->
+  <%- include('./partials/sidenav.ejs') %>
+    <!-- Main content -->
+    <div class="main-content" id="panel">
+      <!-- Topnav -->
+      <%- include('./partials/navbar.ejs') %>
+        <!-- Header -->
+        <div class="header bg-success pb-6">
+          <div class="container-fluid">
+            <div class="header-body">
+              <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                  <h6 class="h2 text-white d-inline-block mb-0">MaThec</h6>
+                  <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                      <li class="breadcrumb-item">
+                        <a href="/"><i class="fas fa-home"></i></a>
+                      </li>
+                      <li class="breadcrumb-item"><a href="/users">User</a></li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Header -->
+        <!-- Page content -->
+        <div class="container-fluid mt--6">
+          <div class="row">
+            <div class="col">
+              <div class="card">
+                <!-- Card header -->
+                <div class="card-header">
+                  <h3 class="mb-0">Report Data User</h3>
+                  <p class="text-sm mb-0">
+                    Table to see user data reported by other users on the MaThec
+                  </p>
+                </div>
+                <div class="table-responsive py-4">
+                  <table class="table table-flush" id="datatable-basic">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>Reported User</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Reporter</th>
+                        <th>Proof</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% if (reports.length> 0) { %> <% reports.forEach(function(report) { %>
+                          <% if(report.read){ %>
+                            <tr>
+                              <% }else{ %>
+                            <tr class="bg-primary text-white">
+                              <% } %>
+                                <td>
+                                  <%= report.terlapor.name %>
+                                </td>
+                                <td>
+                                  <%= report.jenis_laporan %>
+                                </td>
+                                <td>
+
+                                  <%= report.deskripsi.substring(0, 20) + '...' %>
+
+                                </td>
+                                <td>
+                                  <%= report.pelapor.name %>
+                                </td>
+                                <td>
+                                  <a href="<%= report.bukti_laporan %>" target="_blank">
+                                    <img src="<%= report.bukti_laporan %>" alt="" width="50px">
+                                  </a>
+                                </td>
+                                <td>
+                                  <% if(report.terlapor.deleted_at==null) { %>
+                                    <span class="badge badge-danger">
+                                      No blocked
+                                    </span>
+                                    <% } else { %>
+                                      <span class="badge badge-success">
+                                        Been blocked
+                                      </span>
+                                      <% } %>
+                                </td>
+                                <td>
+                                  <button class="btn btn-icon btn-primary btn-sm" type="button" data-toggle="modal"
+                                    data-target="#user-report-<%= report.id %>">
+                                    <span class="btn-inner--text"><i class="fa fa-eye fa-1x m-0"></i> See</span>
+                                  </button>
+                                  <a <%=report.terlapor.deleted_at !==null ? 'id="btn-block"' : '' %> class="btn
+                                    btn-icon btn-danger btn-sm" href="/users/delete/<%= report.terlapor.id %>">
+                                      <span class="btn-inner--text"><i class="fa fa-trash fa-1x m-0"></i> Delete</span>
+                                  </a>
+                                </td>
+                                <div class="modal fade" id="user-report-<%= report.id %>" tabindex="-1"
+                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Detail User</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <h4>Reporter:</h4>
+                                        <p>
+                                          <%= report.pelapor.name %>
+                                        </p>
+                                        <h4>Reported User:</h4>
+                                        <p class="text-red">
+                                          <%= report.terlapor.name %>
+                                        </p>
+                                        <h4>Type:</h4>
+                                        <p>
+                                          <%= report.jenis_laporan %>
+                                        </p>
+                                        <h4>Description:</h4>
+                                        <p>
+                                          <%= report.deskripsi %>
+                                        </p>
+                                        <a href="<%= report.bukti_laporan %>" target="_blank">
+                                          <img src="<%= report.bukti_laporan %>" alt="" width="90px">
+                                        </a>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                          data-dismiss="modal">Close</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </tr>
+                            <% }); %>
+                              <% } else { %>
+                                <tr>
+                                  <td colspan="6" class="text-center">
+                                    Not yet data
+                                  </td>
+                                </tr>
+                                <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Page content -->
+    </div>
+    <%- include('./partials/footer.ejs') %>

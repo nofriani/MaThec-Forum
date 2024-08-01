@@ -1,0 +1,92 @@
+.navbar {
+  --bs-navbar-padding-y: 0 !important;
+}
+
+.navbar-brand {
+  padding: 0 !important;
+}
+
+.logo-left{
+  margin-left: 30px; 
+  width: 80px;
+}
+
+.container-search{
+  width: 200px;
+  position: relative;
+}
+.search{
+  position: relative;
+}
+
+.box-search{
+  display: none;
+}
+
+.search-input{
+  width: 100%;
+}
+
+.box-search.focus{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 30px;
+  position: absolute;
+  top: 100%;
+  transform: translateX(-25%);
+  width: 80vw;
+  height: 500px;
+  overflow: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(175, 175, 175, 0.554);
+}
+
+@media screen and (max-width: 415px) {
+  .profile{
+    display: none;
+    width: 40px !important;
+    height: 40px !important;
+    object-fit: cover;
+  }
+
+  .logo-left{
+    margin-left: 0 !important; 
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .container-search{
+     width: 100%; 
+     margin: 0 130px;
+    position: relative;
+  }
+
+
+  .box-search.focus{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 500px;
+    transform: translateX(0);
+    overflow: auto;
+    border-radius: 8px;
+    border: 1px solid rgba(175, 175, 175, 0.554);
+  }
+  
+}
+
+@media screen and (max-width: 1009px) {
+  .container-user{
+    display: none;
+  }
+  .login{
+    display: none;
+  }
+}

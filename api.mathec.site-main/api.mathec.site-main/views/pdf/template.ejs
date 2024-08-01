@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kuisioner</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+      :root {
+        --font-color: black;
+        --highlight-color: #60d0e4;
+        --header-bg-color: #b8e6f1;
+        --footer-bg-color: #bfc0c3;
+        --table-row-separator-color: #bfc0c3;
+      }
+
+      body {
+        margin: 0;
+        padding: 1rem 2rem;
+        color: var(--font-color);
+        font-family: "Montserrat", sans-serif;
+        font-size: 10pt;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      header {
+        height: 4cm;
+        padding: 1cm 1cm;
+	margin-bottom: 10px;
+        margin: 0;
+      }
+
+      header .headerSection {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      header .logoAndName {
+        display: flex;
+        gap: 1rem;
+        align-items: start;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      header .logoAndName .header-content {
+        padding: 1rem 0rem;
+      }
+
+      header h1,
+      header h2,
+      header h3,
+      header p {
+        margin: 0;
+      }
+
+      header .header-image {
+        max-width: 200px;
+        height: 150px;
+      }
+    
+      .header-image img {
+	height: 150px;
+	width: auto;
+	object-fit: fill;
+      }
+
+      main table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      main table thead {
+        display: table-row-group;
+      }
+
+      main table thead th {
+        height: 1cm;
+        color: black;
+        background-color: RGB(212, 237, 218);
+        border: #bfc0c3 1px solid;
+        padding: 0.5rem 0.5rem;
+      }
+
+      main table tbody td {
+        padding: 1rem 0.5rem;
+        border: 0.5mm solid var(--table-row-separator-color);
+      }
+
+      main table tbody .category {
+        text-align: center;
+      }
+
+      main table thead th:last-of-type,
+      main table tbody td:last-of-type {
+        text-align: center;
+      }
+
+      main table th {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="headerSection">
+        <div class="logoAndName">
+          <div class="header-image">
+            <img
+              src="http:localhost:3000/<%= user.Profile.profile_picture %>"
+              class="rounded img-responsive"
+              alt="profile"
+            />
+          </div>
+          <div class="header-content">
+            <h2><%= user.name %></h2>
+            <% if(user.questioner.length > 0) { %>
+            <p
+              class="text-muted mb-0"
+              style="font-size: 12px; margin-bottom: 12px; margin-top: 6px"
+            >
+              Fiil i the questionnaire data on the date <%= new
+              Date(user.questioner[0].createdAt).toLocaleDateString("id-ID", {
+              year: "numeric", month: "short", day: "numeric", hour: "numeric",
+              minute: "numeric", hour12: false, }) %>
+            </p>
+            <% } else { %>
+            <p>Never filled out a questionnaire</p>
+            <%}%>
+            <p class="text-black">
+              <% if(!user.Profile.about_me) {%> Not yet description in here!. <%
+              } else { %> <%= user.Profile.about_me %> <% } %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Questionnaire</th>
+            <th>Category</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% let no=1; %> <% let total=0; %> <%
+          user.questioner.forEach((questioner)=> { %>
+          <tr>
+            <td><%= no++; %></td>
+            <td><%= questioner.questioner %></td>
+            <td class="category"><%= questioner.category.name %></td>
+            <td><%= questioner.LinkertScore.score %></td>
+          </tr>
+          <% total +=questioner.LinkertScore.score %> <%})%>
+        </tbody>
+        <tfood>
+          <tr>
+            <td
+              colspan="3"
+              style="text-align: center; font-size: 1rem; font-weight: bold"
+            >
+              Total
+            </td>
+            <td style="text-align: center; font-size: 1rem; font-weight: bold">
+              <%= total %>
+            </td>
+          </tr>
+        </tfood>
+      </table>
+    </main>
+  </body>
+</html>

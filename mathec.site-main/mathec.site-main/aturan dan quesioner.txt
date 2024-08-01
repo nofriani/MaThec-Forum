@@ -1,0 +1,55 @@
+PTUNJUK PENGISIAN(bold)
+1. Isilah setiap pertanyaan yang diminta dengan cara  memilih salah satu jawaban. dengan memberi tanda check (.) pada
+pilihan jawaban yang tersedia berdasarkan pendapat anda sendiri.
+2. Bacalah kembali setiap pertanyaan untuk memastikan tidak ada pertanyaan yang tidak
+terjawab.
+Keterangan :
+1 = Sangat Setuju 
+2 = Setuju 
+3 = Ragu-ragu
+4 = Tidak Setuju
+5 = Sangat Tidak Setuju
+
+terdapat 2 button Tidak Bersedia dan Bersedia
+
+
+USEFULNESS
+1. Seberapa efektif pembelajaran Anda dengan adanya forum Diskusi MaThec?
+2. Seberapa produktif pembelajaran Anda dengan adanya forum Diskusi MaThec?
+3. Seberapa bermanfaat pembelajaran melalui forum Diskusi MaThec bagi Anda?
+4. Seberapa baik forum Diskusi MaThec memungkinkan Anda mengatur aktivitas pembelajaran Anda?
+5. Seberapa forum Diskusi MaThec memudahkan Anda mencapai target pembelajaran?
+6. Seberapa besar forum Diskusi MaThec membantu Anda menghemat waktu?
+7. Seberapa sesuai forum Diskusi MaThec dengan kebutuhan pembelajaran Anda?
+8. Seberapa baik forum Diskusi MaThec berjalan sesuai dengan yang Anda harapkan?
+
+EASE OF USE
+9. Seberapa mudah forum Diskusi MaThec untuk digunakan?
+10. Seberapa praktis forum Diskusi MaThec untuk digunakan?
+11. Seberapa menarik dan mudah dipahami (user friendly) forum Diskusi MaThec?
+12. Seberapa forum Diskusi MaThec tidak memerlukan langkah-langkah yang rumit saat digunakan?
+13. Seberapa fleksibel forum Diskusi MaThec?
+14. Seberapa Anda tidak menghadapi kesulitan dalam menjalankan forum Diskusi MaThec?
+15. Seberapa Anda dapat mengoperasikan forum Diskusi MaThec tanpa instruksi tertulis?
+16. Seberapa sering Anda menghadapi ketidakkonsistenan selama mengoperasikan forum Diskusi MaThec?
+17. Seberapa Anda rutin mengoperasikan dan menyukai forum Diskusi MaThec?
+18. Seberapa Anda dapat mengatasi kesalahan dengan cepat dan mudah?
+19. Seberapa lancar Anda mengoperasikan forum Diskusi MaThec setiap saat?
+
+EASE OF LEARNING
+20. Seberapa cepat Anda mempelajari pengoperasian forum Diskusi MaThec?
+21. Seberapa mudah Anda mengingat bagaimana mengoperasikan forum Diskusi MaThec?
+22. Seberapa mudah pengoperasian forum Diskusi MaThec untuk dipelajari?
+23. Seberapa cepat Anda menjadi terampil mengoperasikan forum Diskusi MaThec?
+
+SATISFACTION
+24. Seberapa puas Anda dengan adanya forum Diskusi MaThec?
+25. Seberapa besar kemungkinan Anda akan merekomendasikan forum Diskusi MaThec kepada yang lain?
+26. Seberapa menyenangkan forum Diskusi MaThec untuk dioperasikan?
+27. Seberapa forum Diskusi MaThec berjalan sesuai dengan yang Anda harapkan?
+28. Seberapa bagus menurut Anda forum Diskusi MaThec?
+29. Seberapa Anda merasa harus memiliki/menggunakan forum Diskusi MaThec?
+30. Seberapa nyaman forum Diskusi MaThec untuk digunakan?
+
+query untuk menampilkan data nama user, questioner, dan score
+select u.name, q.questioner, ls.score from "Users" u join "LinkertScores" ls on ls.id_user = u.id join "Questioners" q on q.id = ls.id_questioner where u.id = 3
